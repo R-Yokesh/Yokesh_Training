@@ -74,9 +74,9 @@
     box-shadow: 0 10px 15 rgba(0,0,0,.2);
     transform:scale(1.02);
 }
-/* 
+
 @media (max-width:768px) {
     .container{
         padding:20px;
     }
-} */
+} 
