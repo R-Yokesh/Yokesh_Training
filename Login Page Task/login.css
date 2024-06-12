@@ -32,8 +32,10 @@ body {
   input[type="submit"] {
     background-color: #4CAF50;
     color: white;
+    font-size: 20px;   /* changes made */ 
     padding: 15px 20px;
     border: none;
+    margin-top: 15px;  /* changes made */ 
     cursor: pointer;
     width: 100%;
     opacity: 0.9;
