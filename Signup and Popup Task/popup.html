@@ -7,14 +7,18 @@
     <link rel="stylesheet" href="css/popup.css">
 </head>
 <body>
-    <div class="container">
-        <div class="popup" id="popup">
-            <img src="images/404-tick.png" alt="Success Image">
+
+    <div id="popup-container" class="popup-container">
+        <div class="popup-content">
+            <img src="images/404-tick.png" alt="image">
             <h2>Thank You!</h2>
-            <p>Your details have been successfully submitted. Thanks!</p>
-            <button type="button" onclick="closePopup()">OK</button>
+            <p>Your signup was successful.</p>
+            <p> <b>User Details:</b></p>
+            <p id="user-details"></p>
+            <button id="close-popup">Close</button>
         </div>
     </div>
+
     <script src="js/popup.js"></script>
 </body>
 </html>
