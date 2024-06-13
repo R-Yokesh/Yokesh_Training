@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>DOM Manipulations</title>
+        <script>
+            function setSmile()
+            {
+                document.getElementById("smile").src="images/smile.jpg"
+            }
+            function setSad() 
+            {
+                document.getElementById("smile").src="images/sad.jpg"
+            }
+
+        </script>
+    </head>
+    <body>
+        <img id="smile" onmouseover="setSmile()" onmouseout="setSad()" src="images/sad.jpg" width="200">
+    </body>
+</html>
