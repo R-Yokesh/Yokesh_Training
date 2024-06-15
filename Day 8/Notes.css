@@ -16,23 +16,24 @@
     padding-left: 10%;
 }
 
-.container h1{
+.container h1 {
     display: flex;
     align-items: center;
     font-size: 35px;
     font-weight: 600;
 }
 
-.container h1 img{
+.container h1 img {
     width: 60px;
 }
 
 .container button img {
     width:25px;
     margin-right: 8px;
+    
 }
 
-.container button{
+.container button {
     display: flex;
     align-items: center;
     background: linear-gradient(#9418fd,#571094);
@@ -45,6 +46,7 @@
     margin:30px 0 20px;
     cursor: pointer;
 }
+
 .input-box {
     position: relative;
     width: 100%;
@@ -53,9 +55,10 @@
     background: #fff;
     color: #333;
     padding: 20px;
-    margin:20px 0;
+    margin: 20px 0;
     outline: none;
     border-radius: 5px;
+ 
 }
 
 .input-box img {
@@ -64,4 +67,53 @@
     bottom: 15px;
     right: 15px;
     cursor: pointer;
+}
+
+.notes-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.note {
+    position: relative;
+    width: 200px;
+    padding: 10px;
+    margin: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
+    background-color: #fff;
+    color: #333;
+}
+
+.note.completed {
+    background-color: #e0ffe0;
+}
+
+.note .complete-check {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+
+.note .note-content {
+    padding: 10px;
+    min-height: 100px;
+}
+
+.note .note-content::before {
+    content: '';
+    display: none;
+    color: green;
+    font-weight: bold;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
+.note.completed .note-content::before {
+    display: block;
+    content: '✔';
+    
 }

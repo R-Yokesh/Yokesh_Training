@@ -1,13 +1,13 @@
 document.addEventListener('DOMContentLoaded', function() {
 
-    const userData = JSON.parse(localStorage.getItem('currentUser'));
+//     const userData = JSON.parse(localStorage.getItem('currentUser'));
 
-    if (userData) {
-        const userDetails = document.getElementById('user-details');
-        userDetails.textContent = `Name: ${userData.firstName} ${userData.lastName}, Email: ${userData.email}`;
-        showPopup(); 
-    }
-});
+//     if (userData) {
+//         const userDetails = document.getElementById('user-details');
+//         userDetails.textContent = `Name: ${userData.firstName} ${userData.lastName}, Email: ${userData.email}`;
+//         showPopup(); 
+//     }
+// });
 
 function showPopup() {
     const popupContainer = document.getElementById('popup-container');

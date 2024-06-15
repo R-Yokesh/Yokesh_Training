@@ -33,6 +33,7 @@
 .popup-content {
     background-color: white;
     padding: 20px;
+    width: 25%;
     border-radius: 5px;
     text-align: center;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
@@ -50,15 +51,14 @@
     font-size: 38px;
     font-weight: 500;
     margin: 10px 0 10px;
-    
     color: #333; 
 }
 
 #close-popup {
-    margin-top: 10px;
+    margin-top: 20px;
     margin-bottom: 10px;
     padding: 8px 20px;
-    width: 100px;
+    width: 50%;
     background-color:#6fd649;
     color: white;
     border: none;
