@@ -1,128 +1,71 @@
-const notesContainer = document.querySelector(".notes-container");
+const notesContainer = document.querySelectorAll(".notes-container");
 const createBtn = document.querySelector(".btn");
-let notes = document.querySelectorAll(".note-content");
 
 function showNotes() {
-  notesContainer.innerHTML = localStorage.getItem("notes");
-  // Reinitialize event listeners for checkboxes and placeholders after loading from localStorage
-  reinitializeEventListeners();
+    notesContainer.forEach(container => {
+        const status = container.getAttribute('data-status');
+        container.innerHTML = localStorage.getItem(status) || '';
+    });
 }
 
 function updateStorage() {
-  localStorage.setItem("notes", notesContainer.innerHTML);
+    notesContainer.forEach(container => {
+        const status = container.getAttribute('data-status');
+        localStorage.setItem(status, container.innerHTML);
+    });
 }
 
 createBtn.addEventListener("click", () => {
-  let note = document.createElement("div");
-  note.className = "note";
-
-  let completeCheck = document.createElement("input");
-  completeCheck.type = "checkbox";
-  completeCheck.className = "complete-check";
-
-  let noteContent = document.createElement("div");
-  noteContent.className = "note-content";
-  noteContent.setAttribute("contenteditable", "true");
-  noteContent.dataset.placeholder = "New note...";
-  noteContent.textContent = noteContent.dataset.placeholder;
-
-  let img = document.createElement("img");
-  img.src = "notes images/delete.png";
-  img.style.width = "20px"; 
-  img.style.position = "absolute";
-  img.style.bottom = "10px"; 
-  img.style.right = "10px"; 
-
-  completeCheck.addEventListener("change", function () {
-    if (completeCheck.checked) {
-      note.classList.add("completed");
-    } else {
-      note.classList.remove("completed");
-    }
+    let inputBox = document.createElement("div");
+    inputBox.className = "note";
+    inputBox.setAttribute("draggable", "true");
+    inputBox.innerHTML = `
+        <div class="note-content" contenteditable="true">New note...</div>
+        <img src="notes images/delete.png" class="delete-btn">
+    `;
+    notesContainer[0].appendChild(inputBox);
     updateStorage();
-  });
-
-  noteContent.addEventListener("focus", function () {
-    if (noteContent.textContent === noteContent.dataset.placeholder) {
-      noteContent.textContent = "";
-    }
-  });
-
-  noteContent.addEventListener("blur", function () {
-    if (noteContent.textContent.trim() === "") {
-      noteContent.textContent = noteContent.dataset.placeholder;
-    }
-    updateStorage();
-  });
-
-  noteContent.addEventListener("keyup", updateStorage);
-
-  img.addEventListener("click", function () {
-    note.remove();
-    updateStorage();
-  });
-
-  note.appendChild(completeCheck);
-  note.appendChild(noteContent);
-  note.appendChild(img);
-  notesContainer.appendChild(note);
-
-  updateStorage();
+    addNoteEventListeners(inputBox);
 });
 
-notesContainer.addEventListener("click", function (e) {
-  if (e.target.tagName === "IMG") {
-    e.target.parentElement.remove();
-    updateStorage();
-  }
+notesContainer.forEach(container => {
+    container.addEventListener("dragover", e => {
+        e.preventDefault();
+    });
+
+    container.addEventListener("drop", e => {
+        const note = document.querySelector(".dragging");
+        const status = container.getAttribute('data-status');
+        container.appendChild(note);
+        if (status === 'completed') {
+            note.classList.add('completed');
+        } else {
+            note.classList.remove('completed');
+        }
+        updateStorage();
+    });
 });
 
-document.addEventListener("keydown", (event) => {
-  if (event.key === "Enter") {
-    document.execCommand("insertLineBreak");
-    event.preventDefault();
-  }
-});
-
-function reinitializeEventListeners() {
-  let completeChecks = document.querySelectorAll(".complete-check");
-  completeChecks.forEach((check) => {
-    check.addEventListener("change", function () {
-      let note = check.parentElement;
-      if (check.checked) {
-        note.classList.add("completed");
-      } else {
-        note.classList.remove("completed");
-      }
-      updateStorage();
-    });
-  });
-
-  notes = document.querySelectorAll(".note-content");
-  notes.forEach((noteContent) => {
-    noteContent.addEventListener("focus", function () {
-      if (noteContent.textContent === noteContent.dataset.placeholder) {
-        noteContent.textContent = "";
-      }
+function addNoteEventListeners(note) {
+    note.addEventListener("dragstart", () => {
+        note.classList.add("dragging");
     });
 
-    noteContent.addEventListener("blur", function () {
-      if (noteContent.textContent.trim() === "") {
-        noteContent.textContent = noteContent.dataset.placeholder;
-      }
-      updateStorage();
+    note.addEventListener("dragend", () => {
+        note.classList.remove("dragging");
     });
 
-    noteContent.addEventListener("keyup", updateStorage);
-  });
-
-  let deleteImages = document.querySelectorAll(".note img");
-  deleteImages.forEach((img) => {
-    img.addEventListener("click", function () {
-      img.parentElement.remove();
-      updateStorage();
+    note.querySelector(".delete-btn").addEventListener("click", () => {
+        note.remove();
+        updateStorage();
     });
-  });
+
+    note.querySelector(".note-content").addEventListener("input", updateStorage);
 }
 
-showNotes();
+document.addEventListener("DOMContentLoaded", () => {
+    showNotes();
+    document.querySelectorAll(".note").forEach(note => {
+        addNoteEventListeners(note);
+    });
+});

@@ -10,12 +10,21 @@
     <div class="container">
         <h1><img src="notes images/notes.png" alt="image">Notes</h1>
         <button class="btn"><img src="notes images/edit.png" alt="image"> Create Notes</button>
-        <div class="notes-container">
-            <!-- Notes will be dynamically added here -->
+        <div class="board">
+            <div class="column" id="todo">
+                <h2>To Do</h2>
+                <div class="notes-container" data-status="todo"></div>
+            </div>
+            <div class="column" id="in-progress">
+                <h2>In Progress</h2>
+                <div class="notes-container" data-status="in-progress"></div>
+            </div>
+            <div class="column" id="completed">
+                <h2>Completed</h2>
+                <div class="notes-container" data-status="completed"></div>
+            </div>
         </div>
     </div>
-
     <script src="Notes.js"></script>
-    
 </body>
 </html>

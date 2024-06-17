@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap');
 
 * {
     margin: 0;
@@ -30,7 +30,6 @@
 .container button img {
     width:25px;
     margin-right: 8px;
-    
 }
 
 .container button {
@@ -47,43 +46,46 @@
     cursor: pointer;
 }
 
-.input-box {
-    position: relative;
-    width: 100%;
-    max-width: 500px;
-    min-height: 150px;
-    background: #fff;
-    color: #333;
+.board {
+    display: flex;
+    justify-content: space-around;
     padding: 20px;
-    margin: 20px 0;
-    outline: none;
-    border-radius: 5px;
- 
 }
 
-.input-box img {
-    width: 25px;
-    position:absolute;
-    bottom: 15px;
-    right: 15px;
-    cursor: pointer;
+.column-container {
+    display: flex;
+    justify-content: space-around;
+}
+
+.column {
+    background-color: #f0f0f0;
+    border-radius: 5px;
+    padding: 10px;
+    width: 30%;
+    min-height: 400px;
+}
+
+.column h2 {
+    text-align: center;
+    color: #333;
 }
 
 .notes-container {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
+    gap: 10px;
+    min-height: 300px;
 }
 
 .note {
     position: relative;
-    width: 200px;
     padding: 10px;
-    margin: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
     box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
     background-color: #fff;
     color: #333;
+    cursor: grab;
 }
 
 .note.completed {
@@ -115,5 +117,4 @@
 .note.completed .note-content::before {
     display: block;
     content: '✔';
-    
 }
