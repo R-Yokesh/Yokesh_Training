@@ -20,7 +20,7 @@ createBtn.addEventListener("click", () => {
     inputBox.className = "note";
     inputBox.setAttribute("draggable", "true");
     inputBox.innerHTML = `
-        <div class="note-content" contenteditable="true" data-placeholder="New note..."></div>
+        <div class="note-content" contenteditable="true" ></div>
         <img src="notes images/delete.png" class="delete-btn">
     `;
     
