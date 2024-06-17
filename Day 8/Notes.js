@@ -20,10 +20,19 @@ createBtn.addEventListener("click", () => {
     inputBox.className = "note";
     inputBox.setAttribute("draggable", "true");
     inputBox.innerHTML = `
-        <div class="note-content" contenteditable="true">New note...</div>
+        <div class="note-content" contenteditable="true" data-placeholder="New note..."></div>
         <img src="notes images/delete.png" class="delete-btn">
     `;
+    
     notesContainer[0].appendChild(inputBox);
+    
+    const deleteBtn = inputBox.querySelector(".delete-btn");
+    deleteBtn.style.width = "30px";
+    deleteBtn.style.position = "absolute";
+    deleteBtn.style.bottom = "10px";
+    deleteBtn.style.right = "10px";
+
+
     updateStorage();
     addNoteEventListeners(inputBox);
 });
@@ -60,7 +69,13 @@ function addNoteEventListeners(note) {
         updateStorage();
     });
 
-    note.querySelector(".note-content").addEventListener("input", updateStorage);
+    const noteContent = note.querySelector(".note-content");
+    noteContent.addEventListener("input", () => {
+        if (!noteContent.textContent.trim()) {
+            noteContent.textContent = noteContent.getAttribute("data-placeholder");
+        }
+        updateStorage();
+    });
 }
 
 document.addEventListener("DOMContentLoaded", () => {
